@@ -1,0 +1,28 @@
+{
+  "name": "ts-transform-define",
+  "version": "0.1.0",
+  "description": "Allows you to create global constants which can be configured at compile time using the TypeScript compiler.",
+  "main": "src/index.ts",
+  "repository": "git@github.com:compiled/ts-transform-define.git",
+  "author": "Michael Dougall",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.1",
+    "husky": "^4.2.5",
+    "jest": "^25.4.0",
+    "jest-extended": "^0.11.5",
+    "prettier": "^2.0.4",
+    "pretty-quick": "^2.0.1",
+    "ts-jest": "^25.4.0",
+    "ttypescript": "^1.5.10"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
