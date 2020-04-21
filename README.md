@@ -17,13 +17,13 @@ Update your tsconfig.json:
     "plugins": [
       {
         "transform": "ts-transform-define",
-        "options": {
+        "replace": {
           "PRODUCTION": "true",
           "VERSION": "'5fa3b9'",
           "BROWSER_SUPPORTS_HTML5": true,
           "TWO": "1+1",
           "typeof window": "'object'",
-          "process.env.NODE_ENV": "process.env.NODE_ENV"
+          "process.env.NODE_ENV": "production"
         }
       }
     ]
@@ -48,11 +48,11 @@ Run TTypeScript instead of TypeScript:
 
 ```js
 if (!PRODUCTION) {
-  console.log("Debug info");
+  console.log('Debug info');
 }
 
 if (PRODUCTION) {
-  console.log("Production log");
+  console.log('Production log');
 }
 ```
 
@@ -60,15 +60,15 @@ After passing through the transformer:
 
 ```js
 if (!true) {
-  console.log("Debug info");
+  console.log('Debug info');
 }
 if (true) {
-  console.log("Production log");
+  console.log('Production log');
 }
 ```
 
 and then after a minification pass results in:
 
 ```js
-console.log("Production log");
+console.log('Production log');
 ```

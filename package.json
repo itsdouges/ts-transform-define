@@ -6,6 +6,9 @@
   "repository": "git@github.com:compiled/ts-transform-define.git",
   "author": "Michael Dougall",
   "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "typescript": "^3.8.3"
   },
@@ -15,6 +18,7 @@
     "husky": "^4.2.5",
     "jest": "^25.4.0",
     "jest-extended": "^0.11.5",
+    "jest-watch-typeahead": "^0.5.0",
     "prettier": "^2.0.4",
     "pretty-quick": "^2.0.1",
     "ts-jest": "^25.4.0",
