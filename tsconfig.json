@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -9,6 +10,8 @@
     "esModuleInterop": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "target": "ES2015",
+    "module": "CommonJS"
   }
 }
