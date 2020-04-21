@@ -7,7 +7,9 @@
   "author": "Michael Dougall",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "preversion": "yarn test",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "typescript": "^3.8.3"
