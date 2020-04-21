@@ -14,7 +14,7 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "typescript": "^3.8.3"
+    "typescript": "^3.7.0"
   },
   "files": [
     "src"
