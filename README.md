@@ -23,13 +23,15 @@ Update your tsconfig.json:
           "BROWSER_SUPPORTS_HTML5": true,
           "TWO": "1+1",
           "typeof window": "'object'",
-          "process.env.NODE_ENV": "production"
+          "process.env.NODE_ENV": "process.env.NODE_ENV"
         }
       }
     ]
   }
 }
 ```
+
+> When replacing with environment variables it will pass them through.
 
 Run TTypeScript instead of TypeScript:
 
