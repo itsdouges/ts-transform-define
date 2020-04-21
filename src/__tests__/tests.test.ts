@@ -16,7 +16,7 @@ describe('ts-transform-define', () => {
           before: [
             transformer(fakeProgram, {
               replace: {
-                [`process.env.NODE_ENV`]: 'development',
+                [`process.env.NODE_ENV`]: '"development"',
               },
             }),
           ],
@@ -72,7 +72,7 @@ describe('ts-transform-define', () => {
           before: [
             transformer(fakeProgram, {
               replace: {
-                [`typeof window`]: 'undefined',
+                [`typeof window`]: '"undefined"',
               },
             }),
           ],
@@ -86,5 +86,35 @@ describe('ts-transform-define', () => {
       }
       "
     `);
+  });
+
+  it('should replace with environment variable', () => {
+    process.env.LMAO = 'true';
+
+    const actual = ts.transpileModule(
+      `
+      if (process.env.LMAO === true) {
+        console.log('hello world');
+      }
+    `,
+      {
+        transformers: {
+          before: [
+            transformer(fakeProgram, {
+              replace: {
+                [`process.env.LMAO`]: 'process.env.LMAO',
+              },
+            }),
+          ],
+        },
+      }
+    );
+
+    expect(actual.outputText).toMatchInlineSnapshot(`
+    "if (true === true) {
+        console.log('hello world');
+    }
+    "
+  `);
   });
 });

@@ -12,6 +12,9 @@
   "dependencies": {
     "typescript": "^3.8.3"
   },
+  "files": [
+    "src"
+  ],
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.1",

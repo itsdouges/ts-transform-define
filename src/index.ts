@@ -19,9 +19,14 @@ export default function transformer(
           ts.isPropertyAccessExpression(node) ||
           ts.isTypeOfExpression(node)
         ) {
-          const toReplace = keys.find((key) => key === node.getText());
-          if (toReplace) {
-            return ts.createLiteral(args.replace[toReplace]);
+          const replaceKey = keys.find((key) => key === node.getText());
+          if (replaceKey) {
+            const replaceValue = args.replace[replaceKey];
+            const literalOrEnv =
+              typeof replaceValue === 'string' && replaceValue.startsWith('process.env.')
+                ? process.env[replaceValue.replace('process.env.', '')]
+                : replaceValue;
+            return ts.createIdentifier(`${literalOrEnv}`);
           }
 
           return node;
