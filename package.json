@@ -11,7 +11,8 @@
     "test": "jest",
     "preversion": "yarn test",
     "build": "tsc",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "build:tests": "cd test/server && ttsc"
   },
   "dependencies": {
     "typescript": "^3.7.0"

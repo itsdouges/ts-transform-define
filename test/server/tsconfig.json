@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "transformed",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "plugins": [
+      {
+        "transform": "../../dist/index.js",
+        "replace": {
+          "typeof window": "'undefined'"
+        }
+      }
+    ]
+  },
+  "files": ["source.ts"]
+}
