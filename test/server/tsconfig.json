@@ -4,6 +4,7 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
+    "composite": true,
     "plugins": [
       {
         "transform": "../../dist/index.js",

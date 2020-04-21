@@ -12,7 +12,7 @@
     "preversion": "yarn test",
     "build": "tsc",
     "postversion": "git push && git push --tags",
-    "build:tests": "cd test/server && ttsc"
+    "build:tests": "ttsc --build test"
   },
   "dependencies": {
     "typescript": "^3.7.0"
