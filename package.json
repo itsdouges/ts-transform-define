@@ -18,6 +18,7 @@
     "typescript": "^3.7.0"
   },
   "files": [
+    "dist",
     "src"
   ],
   "devDependencies": {
