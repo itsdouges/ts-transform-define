@@ -9,7 +9,7 @@ const toBoolOrString = (str: string): boolean | string => {
     return Boolean(str);
   }
 
-  return `'${str}'`;
+  return str;
 };
 
 export default function transformer(

@@ -111,15 +111,15 @@ describe('ts-transform-define', () => {
     );
 
     expect(actual.outputText).toMatchInlineSnapshot(`
-    "if (true === true) {
-        console.log('hello world');
-    }
-    "
-  `);
+          "if (true === true) {
+              console.log('hello world');
+          }
+          "
+      `);
   });
 
   it('should replace with environment variable from string', () => {
-    process.env.ENVY_ENV = 'production';
+    process.env.ENVY_ENV = '"production"';
 
     const actual = ts.transpileModule(
       `
@@ -141,10 +141,40 @@ describe('ts-transform-define', () => {
     );
 
     expect(actual.outputText).toMatchInlineSnapshot(`
-    "if ('production' === 'production') {
+      "if (\\"production\\" === 'production') {
+          console.log('hello world');
+      }
+      "
+    `);
+  });
+
+  it('should replace with environment variable from expression', () => {
+    process.env.ENVY_ENV = 'typeof window';
+
+    const actual = ts.transpileModule(
+      `
+      if (typeof window === 'production') {
         console.log('hello world');
-    }
-    "
-  `);
+      }
+    `,
+      {
+        transformers: {
+          before: [
+            transformer(fakeProgram, {
+              replace: {
+                [`typeof window`]: 'process.env.ENVY_ENV',
+              },
+            }),
+          ],
+        },
+      }
+    );
+
+    expect(actual.outputText).toMatchInlineSnapshot(`
+      "if (typeof window === 'production') {
+          console.log('hello world');
+      }
+      "
+    `);
   });
 });
