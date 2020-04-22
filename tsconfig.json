@@ -13,5 +13,6 @@
     "moduleResolution": "node",
     "target": "ES2015",
     "module": "CommonJS"
-  }
+  },
+  "exclude": ["./dist", "./test"]
 }
