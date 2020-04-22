@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "preversion": "yarn test",
+    "preversion": "yarn test && yarn build",
     "build": "tsc",
     "postversion": "git push && git push --tags",
     "build:tests": "ttsc --build test"
