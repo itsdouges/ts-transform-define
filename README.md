@@ -31,8 +31,6 @@ Update your tsconfig.json:
 }
 ```
 
-> When replacing with environment variables it will pass them through.
-
 Run TTypeScript instead of TypeScript:
 
 ```diff
@@ -74,3 +72,47 @@ and then after a minification pass results in:
 ```js
 console.log('Production log');
 ```
+
+### Environment variables
+
+When replacing with environment variables it will pass them through,
+so if we have this code:
+
+```ts
+if (process.env.NODE_ENV === 'development') {
+  doLotsOfWorkInDev();
+}
+```
+
+And then we have this config
+
+```json
+{
+  "compilerOptions": {
+    "plugins": [
+      {
+        "transform": "ts-transform-define",
+        "replace": {
+          "process.env.NODE_ENV": "process.env.NODE_ENV"
+        }
+      }
+    ]
+  }
+}
+```
+
+And then we run
+
+```bash
+NODE_ENV="production" ttsc
+```
+
+The code gets transformed to
+
+```tsx
+if ("production" === 'development') {
+  doLotsOfWorkInDev();
+}
+```
+
+Which minifiers will see `false` in the if statement and delete the block.
