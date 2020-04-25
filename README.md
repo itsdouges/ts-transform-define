@@ -1,4 +1,4 @@
-# ts-transform-define
+# ts-transform-define [![npm](https://img.shields.io/npm/v/ts-transform-define?style=flat-square)](https://www.npmjs.com/package/ts-transform-define)
 
 Allows you to create global constants which can be configured at compile time.
 This is the TypeScript equivalent of https://webpack.js.org/plugins/define-plugin/.
