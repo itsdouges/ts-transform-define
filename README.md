@@ -23,7 +23,8 @@ Update your tsconfig.json:
           "BROWSER_SUPPORTS_HTML5": true,
           "TWO": "1+1",
           "typeof window": "'object'",
-          "process.env.NODE_ENV": "process.env.NODE_ENV"
+          "process.env.NODE_ENV": "process.env.NODE_ENV",
+          "isNodeEnvironment()": "true"
         }
       }
     ]
@@ -110,7 +111,7 @@ NODE_ENV="production" ttsc
 The code gets transformed to
 
 ```tsx
-if ("production" === 'development') {
+if ('production' === 'development') {
   doLotsOfWorkInDev();
 }
 ```
