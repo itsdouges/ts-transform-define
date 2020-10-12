@@ -177,4 +177,34 @@ describe('ts-transform-define', () => {
       "
     `);
   });
+
+  it('should replace function expression', () => {
+    process.env.ENVY_ENV = 'true';
+
+    const actual = ts.transpileModule(
+      `
+      if (isNodeEnvironment()) {
+        console.log('hello world');
+      }
+    `,
+      {
+        transformers: {
+          before: [
+            transformer(fakeProgram, {
+              replace: {
+                'isNodeEnvironment()': 'process.env.ENVY_ENV',
+              },
+            }),
+          ],
+        },
+      }
+    );
+
+    expect(actual.outputText).toMatchInlineSnapshot(`
+      "if (true) {
+          console.log('hello world');
+      }
+      "
+    `);
+  });
 });

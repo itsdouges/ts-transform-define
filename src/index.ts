@@ -22,6 +22,7 @@ export default function transformer(
     return (sourceFile) => {
       const visitor = (node: ts.Node): ts.Node => {
         if (
+          ts.isCallExpression(node) ||
           ts.isIdentifier(node) ||
           ts.isExpressionStatement(node) ||
           ts.isPropertyAccessExpression(node) ||
