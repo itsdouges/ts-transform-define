@@ -4,7 +4,7 @@ interface ReplaceValues {
   [key: string]: boolean | string;
 }
 
-const toBoolOrString = (str: string): boolean | string => {
+const toBoolOrString = (str?: string): boolean | string | undefined => {
   if (str === 'true' || str === 'false') {
     return Boolean(str);
   }
@@ -31,12 +31,15 @@ export default function transformer(
           const replaceKey = keys.find((key) => key === node.getText());
           if (replaceKey) {
             const replaceValue = args.replace[replaceKey];
+
             const literalOrEnv =
               typeof replaceValue === 'string' && replaceValue.startsWith('process.env.')
-                ? toBoolOrString(
-                    process.env[replaceValue.replace('process.env.', '')] || replaceValue
-                  )
+                ? toBoolOrString(process.env[replaceValue.replace('process.env.', '')])
                 : replaceValue;
+
+            if (typeof literalOrEnv === 'undefined') {
+              return node;
+            }
 
             return ts.createIdentifier(`${literalOrEnv}`);
           }

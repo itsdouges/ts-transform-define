@@ -117,3 +117,40 @@ if ('production' === 'development') {
 ```
 
 Which minifiers will see `false` in the if statement and delete the block.
+
+## Gotchas
+
+When replacing with environment variables, e.g. `process.env.NODE_ENV` - if it is not set at build time it will ignore replacing the expression.
+
+E.g:
+
+```json
+{
+  "compilerOptions": {
+    "plugins": [
+      {
+        "transform": "ts-transform-define",
+        "replace": {
+          "process.env.NODE_ENV": "process.env.DONT_EXIST"
+        }
+      }
+    ]
+  }
+}
+```
+
+Will result in:
+
+```ts
+if (process.env.NODE_ENV === 'development') {
+  doLotsOfWorkInDev();
+}
+```
+
+Instead of:
+
+```ts
+if (process.env.DONT_EXIST === 'development') {
+  doLotsOfWorkInDev();
+}
+```
