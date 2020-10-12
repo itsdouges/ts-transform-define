@@ -1,6 +1,6 @@
 {
   "name": "ts-transform-define",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Allows you to create global constants which can be configured at compile time using the TypeScript compiler.",
   "main": "dist/index.js",
   "module": "src/index.ts",
