@@ -208,6 +208,36 @@ describe('ts-transform-define', () => {
     `);
   });
 
+  it('should replace function expression with false', () => {
+    process.env.ENVY_ENV = 'false';
+
+    const actual = ts.transpileModule(
+      `
+      if (isNodeEnvironment()) {
+        console.log('hello world');
+      }
+    `,
+      {
+        transformers: {
+          before: [
+            transformer(fakeProgram, {
+              replace: {
+                'isNodeEnvironment()': 'process.env.ENVY_ENV',
+              },
+            }),
+          ],
+        },
+      }
+    );
+
+    expect(actual.outputText).toMatchInlineSnapshot(`
+      "if (false) {
+          console.log('hello world');
+      }
+      "
+    `);
+  });
+
   it('should do nothing if env isnt set', () => {
     const actual = ts.transpileModule(
       `

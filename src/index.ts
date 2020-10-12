@@ -6,7 +6,7 @@ interface ReplaceValues {
 
 const toBoolOrString = (str?: string): boolean | string | undefined => {
   if (str === 'true' || str === 'false') {
-    return Boolean(str);
+    return str === 'true';
   }
 
   return str;
