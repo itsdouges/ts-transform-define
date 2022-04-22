@@ -41,10 +41,8 @@ export default function transformer(
               return node;
             }
 
-            return ts.createIdentifier(`${literalOrEnv}`);
+            return ts.factory.createIdentifier(`${literalOrEnv}`);
           }
-
-          return node;
         }
 
         return ts.visitEachChild(node, visitor, context);
